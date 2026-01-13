@@ -70,7 +70,7 @@ public class DeleteFlightController implements Initializable {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Confirm Deletion");
         confirmAlert.setHeaderText("Delete Flight " + flight.getFlightNumber() + "?");
-        confirmAlert.setContentText("This action cannot be undone.");
+        confirmAlert.setContentText("This will delete the flight and all associated bookings.\nThis action cannot be undone.");
         
         confirmAlert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
@@ -80,7 +80,7 @@ public class DeleteFlightController implements Initializable {
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Flight Deleted");
                 successAlert.setHeaderText(null);
-                successAlert.setContentText("Flight has been deleted successfully.");
+                successAlert.setContentText("Flight and all associated bookings have been deleted successfully.");
                 successAlert.showAndWait();
             }
         });

@@ -215,13 +215,43 @@ public class DatabaseHelper {
     }
     
     public void deleteFlight(String key) {
-        String sql = "DELETE FROM flights WHERE key = ?";
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, key);
-            pstmt.executeUpdate();
+        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+            // First, get the flight number from the key
+            String getFlightSql = "SELECT flightNumber FROM flights WHERE key = ?";
+            String flightNumber = null;
+            
+            try (PreparedStatement getFlightStmt = conn.prepareStatement(getFlightSql)) {
+                getFlightStmt.setString(1, key);
+                ResultSet rs = getFlightStmt.executeQuery();
+                if (rs.next()) {
+                    flightNumber = rs.getString("flightNumber");
+                }
+            }
+            
+            // If flight exists, delete all associated bookings
+            if (flightNumber != null) {
+                String deleteBookingsSql = "DELETE FROM bookings WHERE flightNumber = ?";
+                try (PreparedStatement deleteBookingsStmt = conn.prepareStatement(deleteBookingsSql)) {
+                    deleteBookingsStmt.setString(1, flightNumber);
+                    int bookingsDeleted = deleteBookingsStmt.executeUpdate();
+                    if (bookingsDeleted > 0) {
+                        System.out.println("Deleted " + bookingsDeleted + " booking(s) associated with flight " + flightNumber);
+                    }
+                }
+            }
+            
+            // Finally, delete the flight itself
+            String deleteFlightSql = "DELETE FROM flights WHERE key = ?";
+            try (PreparedStatement deleteFlightStmt = conn.prepareStatement(deleteFlightSql)) {
+                deleteFlightStmt.setString(1, key);
+                int rowsAffected = deleteFlightStmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Flight deleted successfully: " + (flightNumber != null ? flightNumber : "key=" + key));
+                }
+            }
         } catch (SQLException e) {
             System.err.println("Error deleting flight: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
