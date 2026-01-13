@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.flightbook.UserDashboardController"
+            style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <top>
+        <HBox spacing="16" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0;">
+            <Button fx:id="backButton" 
+                    text="← Back" 
+                    onAction="#onBackClick"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;"/>
+            
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="👤" style="-fx-font-size: 24px;"/>
+                <Label fx:id="userNameLabel" 
+                       text="User"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+        </HBox>
+    </top>
+    
+    <center>
+        <VBox spacing="8" alignment="TOP_LEFT" style="-fx-padding: 0 0 0 20;">
+            <Label text="User Dashboard" 
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            
+            <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+                <!-- Book a Flight -->
+                <VBox fx:id="bookFlightCard" spacing="10" alignment="CENTER" 
+                      style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-padding: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2); -fx-border-color: #E74C3C; -fx-border-width: 2; -fx-border-radius: 12; -fx-cursor: hand;"
+                      prefWidth="600">
+                    <Label text="✈️" style="-fx-font-size: 28px;"/>
+                    <Label text="Book a Flight" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Search and book flights" 
+                           style="-fx-font-size: 13px; -fx-text-fill: #E0E0E0;"/>
+                </VBox>
+                
+                <!-- My Bookings -->
+                <VBox fx:id="myBookingsCard" spacing="10" alignment="CENTER" 
+                      style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-padding: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2); -fx-border-color: #3498DB; -fx-border-width: 2; -fx-border-radius: 12; -fx-cursor: hand;"
+                      prefWidth="600">
+                    <Label text="📋" style="-fx-font-size: 28px;"/>
+                    <Label text="My Bookings" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="View your confirmed bookings" 
+                           style="-fx-font-size: 13px; -fx-text-fill: #E0E0E0;"/>
+                </VBox>
+                
+                <!-- Delete Booking -->
+                <VBox fx:id="deleteBookingCard" spacing="10" alignment="CENTER" 
+                      style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-padding: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2); -fx-border-color: #E74C3C; -fx-border-width: 2; -fx-border-radius: 12; -fx-cursor: hand;"
+                      prefWidth="600">
+                    <Label text="🗑️" style="-fx-font-size: 28px;"/>
+                    <Label text="Delete Booking" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Cancel your bookings" 
+                           style="-fx-font-size: 13px; -fx-text-fill: #E0E0E0;"/>
+                </VBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

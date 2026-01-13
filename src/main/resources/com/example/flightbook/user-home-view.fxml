@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.flightbook.UserHomeController"
+            style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <top>
+        <HBox spacing="16" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0;">
+            <Button fx:id="backButton" text="← Back" onAction="#onBackClick"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="👤" style="-fx-font-size: 24px;"/>
+                <Label fx:id="userNameLabel" text="User"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+        </HBox>
+    </top>
+    
+    <center>
+        <VBox spacing="15" alignment="CENTER" style="-fx-padding: 10;">
+            <VBox spacing="12" alignment="CENTER" 
+                  style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-padding: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2); -fx-border-color: #E74C3C; -fx-border-width: 2; -fx-border-radius: 12;"
+                  prefWidth="500">
+                <VBox spacing="8" alignment="CENTER_LEFT" prefWidth="450">
+                        <Label text="From" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                        <TextField fx:id="fromField" 
+                                   promptText="Enter origin city"
+                                   style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-font-size: 14px; -fx-padding: 12; -fx-text-fill: white;"/>
+                        
+                        <Label text="To" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                        <TextField fx:id="toField" 
+                                   promptText="Enter destination city"
+                                   style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-font-size: 14px; -fx-padding: 12; -fx-text-fill: white;"/>
+                        
+                        <Label text="Departure Date" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                        <DatePicker fx:id="departureDatePicker" 
+                                    style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-font-size: 14px;"/>
+                        
+                        <Label text="Return Date" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                        <DatePicker fx:id="returnDatePicker" 
+                                    style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-font-size: 14px;"/>
+                        
+                        <Label text="Class" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                        <ComboBox fx:id="classComboBox" 
+                                  style="-fx-background-color: #34495E; -fx-background-radius: 12; -fx-font-size: 14px;"/>
+                        
+                        <HBox spacing="20" alignment="CENTER" style="-fx-padding: 8 0 8 0;">
+                            <VBox alignment="CENTER" spacing="5">
+                                <Label text="Adults" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                                <HBox spacing="10" alignment="CENTER">
+                                    <Button text="-" onAction="#onAdultMinus" 
+                                            style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-min-width: 30; -fx-min-height: 30;"/>
+                                    <Label fx:id="adultCountLabel" text="2 Adult" 
+                                           style="-fx-font-size: 14px; -fx-text-fill: white;"/>
+                                    <Button text="+" onAction="#onAdultPlus" 
+                                            style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-min-width: 30; -fx-min-height: 30;"/>
+                                </HBox>
+                            </VBox>
+                            <VBox alignment="CENTER" spacing="5">
+                                <Label text="Children" style="-fx-font-size: 12px; -fx-text-fill: white;"/>
+                                <HBox spacing="10" alignment="CENTER">
+                                    <Button text="-" onAction="#onChildMinus" 
+                                            style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-min-width: 30; -fx-min-height: 30;"/>
+                                    <Label fx:id="childCountLabel" text="1 Child" 
+                                           style="-fx-font-size: 14px; -fx-text-fill: white;"/>
+                                    <Button text="+" onAction="#onChildPlus" 
+                                            style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-min-width: 30; -fx-min-height: 30;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        
+                        <Button text="Search Flights" onAction="#onSearchClick"
+                                style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 12 0 12 0; -fx-background-radius: 5; -fx-cursor: hand;"
+                                maxWidth="Infinity"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+    </center>
+</BorderPane>
